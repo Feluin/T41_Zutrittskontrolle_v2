@@ -18,6 +18,7 @@ public class DoorControl {
 
 
 
+
     public static DoorControl getInstance() {
         return instance;
     }
