@@ -16,7 +16,7 @@ public class DoorControl {
 
     }
 
-
+//test
 
 
     public static DoorControl getInstance() {
