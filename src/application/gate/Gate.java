@@ -1,7 +1,8 @@
-package application;
+package application.gate;
 
-import fingerprintreader.FingerprintReader;
-import proxy.ProxyDoorControl;
+import application.Door;
+import application.Employee;
+import application.proxy.ProxyDoorControl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +10,19 @@ import java.util.List;
 public enum Gate
 {
     INSTANCE;
-    private Door frontDoor;
-    private Door seconddoor;
-    private FingerprintReader fingerprintReader;
+    private final Door frontDoor;
+    private final Door seconddoor;
     private Employee currentEmployee;
-    private List<IGateListener> gateListeners = new ArrayList<>();
-    private ProxyDoorControl doorControl;
-    private GateSensor gateSensor;
+    private final List<IGateListener> gateListeners = new ArrayList<>();
+    private final ProxyDoorControl doorControl;
 
     Gate()
     {
-
         frontDoor = new Door("Frontdoor");
         seconddoor = new Door("Backdoor");
-        doorControl=new ProxyDoorControl(frontDoor);
-        gateSensor=new GateSensor(frontDoor,seconddoor);
+        doorControl = new ProxyDoorControl(frontDoor);
+        final GateSensor gateSensor = new GateSensor(frontDoor, seconddoor);
+        addGateListeners(gateSensor);
     }
 
     public void addGateListeners(IGateListener gateListener)
@@ -35,8 +34,11 @@ public enum Gate
     {
         if (currentEmployee == null)
         {
-            currentEmployee = employee;
-            gateListeners.forEach(IGateListener::employeeEntered);
+            if (frontDoor.isOpen())
+            {
+                currentEmployee = employee;
+                gateListeners.forEach(IGateListener::employeeEntered);
+            }
         }
     }
 

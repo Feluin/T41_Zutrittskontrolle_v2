@@ -1,9 +1,9 @@
-package application;
+package application.fingerprint;
 
 public class Fingerprinttuple
 {
-    private int leftfingermethod;
-    private int rightfingermethod;
+    private final int leftfingermethod;
+    private final int rightfingermethod;
 
     public Fingerprinttuple(final int leftfingermethod,
         final int rightfingermethod)

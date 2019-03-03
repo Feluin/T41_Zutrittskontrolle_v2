@@ -1,4 +1,4 @@
-package proxy;
+package application.proxy;
 
 public interface IDoorAccess
 {

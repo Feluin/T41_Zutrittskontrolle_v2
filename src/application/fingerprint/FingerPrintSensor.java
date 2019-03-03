@@ -1,7 +1,7 @@
-package application;
+package application.fingerprint;
 
-import fingerprintreader.IFingersListerner;
-import proxy.ProxyDoorControl;
+import application.fingerprint.fingerprintreader.IFingersListerner;
+import application.proxy.ProxyDoorControl;
 
 import java.util.ArrayList;
 
@@ -10,15 +10,7 @@ public class FingerPrintSensor
 
     private Integer[][] fingerLeft;
     private Integer[][] fingerRight;
-    private ArrayList<IFingersListerner> listeners = new ArrayList<>();
-    private ProxyDoorControl proxyDoorControl;
-
-    public FingerPrintSensor(
-        final ProxyDoorControl proxyDoorControl)
-    {
-
-        this.proxyDoorControl = proxyDoorControl;
-    }
+    private final ArrayList<IFingersListerner> listeners = new ArrayList<>();
 
     public void setFingerLeft(Integer[][] fingerLeft)
     {
@@ -53,6 +45,7 @@ public class FingerPrintSensor
 
     private void update()
     {
+
         if (fingerLeft != null && fingerRight != null)
         {
             listeners.forEach(IFingersListerner::fingersDetected);

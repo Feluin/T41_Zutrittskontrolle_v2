@@ -1,34 +1,50 @@
 package application;
 
+import application.fingerprint.fingerprintreader.FingerprintReader;
+import application.proxy.ProxyDoorControl;
+
 public class DoorMediator implements IDoorMediator
 {
-    private boolean allowOpenDoor;
-    private FingerPrintSensor sensor;
-    private Door door;
+    private String employee;
+    private boolean fingerprintAccepted;
+    private boolean accept;
+
 
     @Override
-    public void registerDoor(final Door door)
+    public void setFingerprintAccepted(final boolean fingerprintAccepted)
     {
-
-        this.door = door;
+        this.fingerprintAccepted = fingerprintAccepted;
     }
 
     @Override
-    public void registerFingerprintSensor(final FingerPrintSensor sensor)
+    public boolean Fingerprintaccepted()
     {
-
-        this.sensor = sensor;
+        return fingerprintAccepted;
     }
 
     @Override
-    public void setAllowOpenDoor(final boolean allowOpenDoor)
+    public void setEmployee(final String employee)
     {
-        this.allowOpenDoor = allowOpenDoor;
+
+        this.employee = employee;
     }
 
     @Override
-    public boolean openDoorAllowed()
+    public String getCurrentEmployee()
     {
-        return allowOpenDoor;
+        return employee;
+    }
+
+    @Override
+    public void setPasswordaccepted(final boolean accept)
+    {
+
+        this.accept = accept;
+    }
+
+    @Override
+    public boolean getPasswordaccepted()
+    {
+        return accept;
     }
 }

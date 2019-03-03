@@ -1,4 +1,4 @@
-package fingerprintreader;
+package application.fingerprint.fingerprintreader;
 
 public interface IFingersListerner
 {

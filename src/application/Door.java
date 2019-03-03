@@ -1,11 +1,11 @@
 package application;
 
-import proxy.IDoorAccess;
+import application.proxy.IDoorAccess;
 
 public class Door implements IDoorAccess
 {
 
-    private String door;
+    private final String door;
 
     public Door(String door)
     {
@@ -25,10 +25,12 @@ public class Door implements IDoorAccess
     @Override
     public boolean openDoor()
     {
+        System.out.println(door+"was opened");
         isOpen=true;
-        return false;
+        return true;
     }
     public void closeDoor(){
+        System.out.println(door+"was closed");
         isOpen=false;
     }
 

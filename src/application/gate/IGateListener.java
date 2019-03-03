@@ -1,4 +1,4 @@
-package application;
+package application.gate;
 
 public interface IGateListener
 {
